@@ -9,7 +9,7 @@ const databaseSchema = new mongoose.Schema({
     deg:Number,
     bgprod:Number,
     ch4:Number,
-    trh: Number,
+    trh:Number,
 })
 
 

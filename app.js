@@ -20,6 +20,12 @@ app.use('/',(err,req,res,next)=>{
     })
 })
 
+// geting the list of possible subtrates
+
+// app.get('/names',(req,res)=>{
+//     res.json({msg:"hi"})
+// })
+
 //setting port
 const port= process.env.PORT || 8080
 
@@ -48,9 +54,9 @@ io.on('connection',(socket)=>{
 
     socket.on('message',(data)=>{
         // uso calculator.js para crear el resultado
-
+        
         bgcalc(data).then(res=>socket.emit('message',JSON.stringify(res)))
-      
+        
     })
 })
 

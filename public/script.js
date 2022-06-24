@@ -1,30 +1,64 @@
 const socket= io()
 
+const substrates = ["Silo de Maiz","Estiercol de Cerdo","Estiercol de Vaca"]
+let list = document.getElementById("Substrates")
+substrates.forEach((item)=>{
+    let option = document.createElement('option');
+    option.value = item;
+    list.appendChild(option);
+    
+ });
+
+
 // objects of DOM
-let sub1 = document.getElementById('sub1')
-let sub2 = document.getElementById('sub2')
-let sub3 = document.getElementById('sub3')
-let cant1 = document.getElementById('cant1')
-let cant2 = document.getElementById('cant2')
-let cant3 = document.getElementById('cant3')
+let oDOM={}
+oDOM.sub1 = document.getElementById('sub1')
+oDOM.sub2 = document.getElementById('sub2')
+oDOM.sub3 = document.getElementById('sub3')
+oDOM.cant1 = document.getElementById('cant1')
+oDOM.cant2 = document.getElementById('cant2')
+oDOM.cant3 = document.getElementById('cant3')
 let btn= document.getElementById("send")
 let output= document.getElementById('result')
+let btnPlus = document.getElementById('plus')
+
+
+// let other = document.getElementById('container')
+// let subCounter=3
+
+// oDOM.btnPlus.addEventListener('click',()=>{
+//     let div= document.createElement('div')
+//     document.body.insertBefore(div,other)
+//     subCounter++
+//     div.id = `sub${subCounter}`
+//     div.innerHTML='<input type="text" id="sub1" placeholder="sustrato1" list ="Substrates">\
+//     <input type="text" id="cant1" placeholder="toneladas/m3">'
+//  })
+
+
+const msgCreator = ()=>{
+    let msg={}
+    let i=1
+    while (oDOM[`sub${i}`]){
+        msg[`sub${i}`]=oDOM[`sub${i}`].value
+        msg[`cant${i}`]=oDOM[`cant${i}`].value
+        i++
+    }
+    return msg
+}
+
 
 btn.addEventListener('click', ()=>{
-    console.log(sub1.value)
-    socket.emit('message',{
-        sub1: sub1.value,
-        cant1: cant1.value,
-        sub2: sub2.value,
-        cant2: cant2.value,
-        sub3: sub3.value,
-        cant3: cant3.value,
-    })
+    socket.emit('message',msgCreator())
 })
 
 socket.on('message',(result)=>{
+    result2=JSON.parse(result)
     output.innerHTML = ""
     output.innerHTML += `<p>
     <strong>  ${result}
-    </p>`
+    </p>
+    <h1>Volumen de digestion ${result2["volDig"]}</h1>
+    <h2>Biogas estimado ${result2["BiogasTotal"]}</h2>
+    <h2>Calidad de gas ${result2["CH4prom"]}</h2>`
 })

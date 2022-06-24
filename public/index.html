@@ -8,20 +8,26 @@
     <link rel="stylesheet" href="main.css">
 </head>
 <body>
-    <div id="subtrate container"> 
+    <h1>Calculador de plantas de biogas</h1>
+    <datalist id="Substrates"></datalist>
+    <div>
         <div>
-            <input type="text" id="sub1" placeholder="sustrato1">
-            <input type="text" id="cant1" placeholder="cantidad1">
+            <input type="text" id="sub1" placeholder="sustrato1" list ="Substrates">
+            <input type="text" id="cant1" placeholder="toneladas/m3">
         </div>
         <div>
-            <input type="text" id="sub2" placeholder="sustrato2">
-            <input type="text" id="cant2" placeholder="cantidadsustrato2">
+            <input type="text" id="sub2" placeholder="sustrato2" list ="Substrates">
+            <input type="text" id="cant2" placeholder="toneladas/m3">
         </div>
         <div>
-            <input type="text" id="sub3" placeholder="sustrato3">
-            <input type="text" id="cant3" placeholder="cantidadsustrato3">
+            <input type="text" id="sub3" placeholder="sustrato3" list ="Substrates">
+            <input type="text" id="cant3" placeholder="toneladas/m3">
         </div>
+    </div>
+    <div>  
+        <button id="plus">+</button>
         <button id="send">CALCULAR</button>
+        
         <div>
             <output type="text" id="result">
         </div>
