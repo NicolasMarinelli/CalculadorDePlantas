@@ -66,7 +66,8 @@ const bgcalc = async (data)=>{
       BiogasTotal: bgT+ " m3/dia",
       CH4prom: ch4p + "%CH4", 
     }
-    return r
+    
+  return r
   }
   
 
