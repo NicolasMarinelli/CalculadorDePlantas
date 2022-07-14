@@ -1,6 +1,4 @@
-const mongoose = require('mongoose')
 const Database = require('./nosql/models')
-
 
 const findSustrateByName =  (substrateName) => {
   return new Promise((resolve, reject)=>{
@@ -11,7 +9,6 @@ const findSustrateByName =  (substrateName) => {
   });
 };
 
-
 const dataHandler= (data)=>{
   const keys = Object.keys(data);
   const name= keys.filter((keys,i)=> i%2==0|| i==0).map((name)=>data[name])
@@ -20,8 +17,8 @@ const dataHandler= (data)=>{
   return [name,cant]
 }
 
-
 const datacolector=async(data)=>{
+  try{
   let [name,cant]=dataHandler(data);
   let obj = {}
   let sub = ""
@@ -30,43 +27,50 @@ const datacolector=async(data)=>{
       obj[sub]=await findSustrateByName(name[i])
       }
   return [obj,cant]
+    } catch(err){
+      console.log(err)
+    }
+  
 }
 
 
-const bgc= (obj)=>{
-  return obj.st*obj.sv*obj.bgprod
-}
+const bgc = obj=>obj.st*obj.sv*obj.bgprod
+const bgmet = obj=>obj.st*obj.sv*obj.bgprod*obj.ch4
 
-const bgmet = (obj)=>{
-  return obj.st*obj.sv*obj.bgprod*obj.ch4
+const ef= (bgt,ch4)=>{
+  let met=bgt*ch4/24/100
+  if(met>250){
+    return 0.41*bgt*ch4*9.95/1000
+  }else if(met>135){
+    return 0.39*bgt*ch4*9.95/1000
+  }else if (met>69){
+    return 0.37*bgt*ch4*9.95/1000
+  }else {
+    return 0.35*bgt*ch4*9.95/1000
+  }
 }
 
 
 const bgcalc = async (data)=>{
+  try{
   let [obj,cant]=await datacolector(data)
   let caudal = cant.map((x)=>x!=0?parseInt(x):x=0).reduce((acc,cur)=>acc+cur)
-  if (obj.sub0==undefined){
-    obj.sub0={}
-    obj.sub0.trh=0
-  }
-  if (obj.sub1==undefined){
-    obj.sub1={}
-    obj.sub1.trh=0
-  }
-  if(obj.sub2==undefined){
-    obj.sub2={}
-    obj.sub2.trh=0
-  }
-  let vol = caudal* Math.max(obj.sub0.trh,obj.sub1.trh,obj.sub2.trh)
-  let bgT = cant.reduce((acc,cur,i)=>acc+parseInt(cur)*bgc(obj[`sub${i}`]),0)
-  let ch4p = cant.reduce((acc,cur,i)=>acc+parseInt(cur)*bgmet(obj[`sub${i}`]),0)/bgT
-  
+  let vol = Math.floor(caudal*Math.max(...Object.keys(obj).map(sub=>obj[sub].trh)))
+  let bgT = Math.round(cant.reduce((acc,cur,i)=>acc+parseInt(cur)*bgc(obj[`sub${i}`]),0))
+  let ch4p = Math.round((cant.reduce((acc,cur,i)=>acc+parseInt(cur)*bgmet(obj[`sub${i}`]),0)/bgT)*100)
+  let pot = Math.round(ef(bgT,ch4p))
+
   r = {
       volDig:vol + " m3",
       BiogasTotal: bgT+ " m3/dia",
       CH4prom: ch4p + "%CH4", 
+      Pot: pot + "Kw/dia"
     }
-    return r
+  return r
+    
+  } catch(err){
+    console.log(err)
+  }
   }
   
 
