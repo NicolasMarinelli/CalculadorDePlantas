@@ -35,16 +35,19 @@ let output= document.getElementById('result')
 let btnPlus = document.getElementById('plus')
 
 
-let other = document.getElementById('container')
+let other = document.getElementById("perro")
 let subCounter=3
+
 
 btnPlus.addEventListener('click',()=>{
     let div= document.createElement('div')
     document.body.insertBefore(div,other)
     subCounter++
     div.id = `sub${subCounter}`
-    div.innerHTML='<input type="text" id="sub1" placeholder="sustrato1" list ="Substrates">\
-    <input type="text" id="cant1" placeholder="toneladas/m3">'
+    div.innerHTML=`<div><input type="text" id="sub${subCounter}" placeholder="sustrato${subCounter}" list ="Substrates">\
+    <input type="text" id="cant${subCounter}" placeholder="toneladas/m3"></div>`
+    oDOM[`sub${subCounter}`]
+    oDOM[`cant${subCounter}`]
  })
 
 
@@ -56,7 +59,9 @@ const msgCreator = ()=>{
         msg[`cant${i}`]=oDOM[`cant${i}`].value
         i++
     }
+    
     return msg
+    
 }
 
 
@@ -65,6 +70,7 @@ btn.addEventListener('click', ()=>{
 })
 
 socket.on('message',(result)=>{
+    console.log(result)
     result2=JSON.parse(result)
     output.innerHTML = ""
     output.innerHTML += `<p>
