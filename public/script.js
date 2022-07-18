@@ -1,13 +1,25 @@
 const socket= io()
 
-const substrates = ["Silo de Maiz","Estiercol de Cerdo","Estiercol de Vaca"]
 let list = document.getElementById("Substrates")
-substrates.forEach((item)=>{
-    let option = document.createElement('option');
-    option.value = item;
-    list.appendChild(option);
+
+async function substrates(url){
+    try{
+    const response = await fetch(url);
+    var data = await response.json();
     
- });
+    data.forEach((item)=>{
+        let option = document.createElement('option');
+        option.value = item;
+        list.appendChild(option);
+        
+     });
+    }
+    catch(err){
+    console.log(err)    
+    }
+}
+substrates('/names')
+
 
 
 // objects of DOM
@@ -23,9 +35,9 @@ let output= document.getElementById('result')
 let btnPlus = document.getElementById('plus')
 
 
-
 let other = document.getElementById("perro")
 let subCounter=3
+
 
 btnPlus.addEventListener('click',()=>{
     if(subCounter<6){
@@ -71,5 +83,6 @@ socket.on('message',(result)=>{
     </p>
     <h1>Volumen de digestion ${result2["volDig"]}</h1>
     <h2>Biogas estimado ${result2["BiogasTotal"]}</h2>
-    <h2>Calidad de gas ${result2["CH4prom"]}</h2>`
+    <h2>Calidad de gas ${result2["CH4prom"]}</h2>
+    <h2>Energia disponible ${result2["Pot"]}</h2>`
 })

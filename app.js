@@ -2,14 +2,35 @@ const express = require('express')
 const app = express()
 require('dotenv').config()
 
+
 const connectDB = require('./nosql/dbnosql')
 
 const SocketIO= require('socket.io')
 const bgcalc = require('./calculator')
 
+const getAllSubstrates= require('./controllers/controllers')
+
 //static midlleware
 
 app.use(express.static('./public'))
+
+
+// geting the list of possible subtrates
+
+app.get('/names',async (req,res)=>{
+    const names =await getAllSubstrates()
+    res.json(names)
+})
+
+//getting the page for the form to add more substrates
+
+app.get('/add',(req,res)=>{
+    res.sendFile('public/add.html',{ root : __dirname});
+})
+
+app.post('/add',(req,res)=>{
+    res.json({msg:'new sebtrate generated'})
+})
 
 //handling errors
 
@@ -20,11 +41,6 @@ app.use('/',(err,req,res,next)=>{
     })
 })
 
-// geting the list of possible subtrates
-
-// app.get('/names',(req,res)=>{
-//     res.json({msg:"hi"})
-// })
 
 //setting port
 const port= process.env.PORT || 8080
