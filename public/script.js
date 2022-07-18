@@ -28,15 +28,20 @@ let other = document.getElementById("perro")
 let subCounter=3
 
 btnPlus.addEventListener('click',()=>{
+    if(subCounter<6){
     let div= document.createElement('div')
     document.body.insertBefore(div,other)
     subCounter++
     div.id = `sub${subCounter}`
-    div.innerHTML=`<div><input type="text" id="sub${subCounter}" placeholder="sustrato${subCounter}" list ="Substrates">\
-    <input type="text" id="cant${subCounter}" placeholder="toneladas/m3"></div>`
-    oDOM[`sub${subCounter}`]
-    oDOM[`cant${subCounter}`]
+    div.innerHTML=`<div class="conti"><input type="text" id="sub${subCounter}" placeholder="sustrato${subCounter}" list ="Substrates"><input type="text" id="cant${subCounter}" placeholder="toneladas/m3"></div>`
+    
+    oDOM[`sub${subCounter}`] =document.getElementById(div.id)
+    oDOM[`cant${subCounter}`] =document.getElementById(`cant${subCounter}`)
+    } else{
+        console.log("maxsubstrates",subCounter)
+    }
  })
+
 
 
 const msgCreator = ()=>{

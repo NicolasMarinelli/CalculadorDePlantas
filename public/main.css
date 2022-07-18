@@ -1,1 +1,12 @@
+h1{
+    color:black;
+    size: 100px;
+    text-align: center;
+}
+.conti, .perro{
+    grid: auto;
+    margin: auto;
+    width: 27%;
+}
+
 
