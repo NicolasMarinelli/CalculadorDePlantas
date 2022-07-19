@@ -38,15 +38,15 @@ const bgc = obj=>obj.st*obj.sv*obj.bgprod
 const bgmet = obj=>obj.st*obj.sv*obj.bgprod*obj.ch4
 
 const ef= (bgt,ch4)=>{
-  let met=bgt*ch4/24/100
+  let met=bgt*ch4/24
   if(met>250){
-    return 0.41*bgt*ch4*9.95/1000
+    return 0.41*bgt*ch4*9.95/100
   }else if(met>135){
-    return 0.39*bgt*ch4*9.95/1000
+    return 0.39*bgt*ch4*9.95/100
   }else if (met>69){
-    return 0.37*bgt*ch4*9.95/1000
+    return 0.37*bgt*ch4*9.95/100
   }else {
-    return 0.35*bgt*ch4*9.95/1000
+    return 0.35*bgt*ch4*9.95/100
   }
 }
 

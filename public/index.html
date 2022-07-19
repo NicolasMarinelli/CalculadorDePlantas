@@ -8,40 +8,27 @@
     <link rel="stylesheet" href="main.css">
 </head>
 <body>
-    <h1>Calculador de plantas de biogas</h1>
+    <h1 class="titulo">Calculador de plantas de biogas</h1>
     <datalist id="Substrates"></datalist>
     <div class="conti" id="conti">
         <div>
-<<<<<<< HEAD
-            <input type="text" id="sub1" placeholder="sustrato1" list ="Substrates"><input type="text" id="cant1" placeholder="toneladas/m3">
+            <select name="Subselect" id="sub1">
+            <option value="0">Elegir sustrato</option></select>
+            <input type="number" min="0" step="1" id="cant1" placeholder="toneladas/m3">
         </div>
-        <div>
-            <input type="text" id="sub2" placeholder="sustrato2" list ="Substrates"><input type="text" id="cant2" placeholder="toneladas/m3">
-        </div>
-        <div>
-            <input type="text" id="sub3" placeholder="sustrato3" list ="Substrates"><input type="text" id="cant3" placeholder="toneladas/m3">
-=======
-            <input type="text" id="sub1" placeholder="sustrato1" list ="Substrates" required>
-            <input type="text" id="cant1" placeholder="toneladas/m3" required>
-        </div>
-        <div>
-            <input type="text" id="sub2" placeholder="sustrato2" list ="Substrates" required>
-            <input type="text" id="cant2" placeholder="toneladas/m3">
-        </div>
-        <div>
-            <input type="text" id="sub3" placeholder="sustrato3" list ="Substrates" required>
-            <input type="text" id="cant3" placeholder="toneladas/m3">
->>>>>>> fa94d50ff1a6e9c230ff7601c893b382b5af83af
-        </div>
-    </div>
-    <div class="perro" id="perro">  
-        <button id="plus">+</button>
-        <button id="send">CALCULAR</button>
         
-        <div>
-            <output type="text" id="result">
         </div>
-    </div>
+        <div class="perro" id="perro">  
+            <button id="plus">+</button>
+            <button id="minus">-</button>
+            <button id="send">CALCULAR</button>
+            
+            <div>
+                <output type="text" id="result">
+            </div>
+        </div>
+
+
     <script src="/socket.io/socket.io.js" charset="utf-8"></script>
     <script src="script.js" charset="utf-8"></script>
 </body>

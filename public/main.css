@@ -3,10 +3,10 @@ h1{
     size: 100px;
     text-align: center;
 }
-.conti, .perro{
+.conti,.perro{
     grid: auto;
     margin: auto;
-    width: 27%;
+    width: 50%;
 }
 
 
