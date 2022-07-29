@@ -4,9 +4,15 @@ h1{
     text-align: center;
 }
 .conti,.perro{
+    display: flex;
+    justify-content: center;
     grid: auto;
     margin: auto;
     width: 50%;
+}
+.output{
+    flex: center;
+    color: green;
 }
 
 

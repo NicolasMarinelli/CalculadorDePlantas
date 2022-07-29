@@ -1,4 +1,4 @@
-const socket= io()
+const socket= io({ withCredentials: true,})
 
 let subCounter=1
 
@@ -6,7 +6,8 @@ async function subspopulate(url){
     let list= document.getElementById(`sub${subCounter}`)
     try{
     const response = await fetch(url);
-    var data = await response.json();
+    let data = await response.json();
+
     data.forEach((item)=>{
         let option = document.createElement('option');
         option.value = item;
@@ -54,6 +55,7 @@ btnPlus.addEventListener('click',()=>{
     if(subCounter>1){
         let div= document.getElementById(`div${subCounter}`)
         div.remove()
+        oDOM[`sub${subCounter}`] = null
         console.log("removed")
         subCounter--
     }
@@ -83,14 +85,18 @@ btn.addEventListener('click', ()=>{
 
 // respuesta del websocket renderizada
 socket.on('message',(result)=>{
-    console.log(result)
     result2=JSON.parse(result)
     output.innerHTML = ""
     output.innerHTML += `<p>
-    <strong>  ${result}
+    <strong>  ${""}
     </p>
-    <h1>Volumen de digestion ${result2["volDig"]}</h1>
-    <h2>Biogas estimado ${result2["BiogasTotal"]}</h2>
-    <h2>Calidad de gas ${result2["CH4prom"]}</h2>
-    <h2>Energia disponible ${result2["Pot"]}</h2>`
+    <h2>Volumen de digestion ${result2["volDig"]} m3</h2>
+    <h2>Biogas estimado ${result2["BiogasTotal"]} m3/día</h2>
+    <h2>Calidad de gas ${result2["CH4prom"]} %CH4</h2>
+    <h2>Energia disponible ${result2["Pot"]} Kw/día</h2>
+    <h2>Gas Natural reemplazado ${result2["gasNatural"]} m3 de gn</h2>
+    <h2>GLP reemplazado ${result2["glp"]} kg de glp</h2>`
+
 })
+
+

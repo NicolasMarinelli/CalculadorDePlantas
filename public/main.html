@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>"Plant Producer"</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <h1 class="titulo">Calculador de plantas de biogas</h1>
+    <datalist id="Substrates"></datalist>
+    <div class="conti" id="conti">
+        <div>
+            <select name="Subselect" id="sub1">
+            <option value="0">Elegir sustrato</option></select>
+            <input type="number" min="0" step="1" id="cant1" placeholder="toneladas/m3">
+        </div>
+        
+    </div>
+        <div class="perro" id="perro">  
+            <button id="plus">+</button>
+            <button id="minus">-</button>
+            <button id="send">CALCULAR</button>
+        </div>   
+        <div class="output">
+            <output type="text" id="result">
+        </div>
+        
+
+
+    <script src="/socket.io/socket.io.js" charset="utf-8"></script>
+    <script src="script.js" charset="utf-8"></script>
+</body>
+</html>
