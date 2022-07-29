@@ -71,6 +71,8 @@ const server =app.listen(port,()=>{
 // setting up socketIO //
 
 const io = SocketIO(server)
+
+// ni idea que hace esta linea de código, pero si no está no puedo comunicar la session a travez del websocket //
 const wrap = middleware => (socket, next) => middleware(socket.request, {}, next);
 io.use(wrap(sessionMiddleware))
 
