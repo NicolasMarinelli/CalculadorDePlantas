@@ -12,9 +12,9 @@
     <datalist id="Substrates"></datalist>
     <div class="conti" id="conti">
         <div>
-            <select name="Subselect" id="sub1">
+            <select name="Subselect" id="sub1" required>
             <option value="0">Elegir sustrato</option></select>
-            <input type="number" min="0" step="1" id="cant1" placeholder="toneladas/m3">
+            <input type="number" min="0" step="1" id="cant1" placeholder="toneladas/m3" value="0">
         </div>
         
     </div>
@@ -23,11 +23,9 @@
             <button id="minus">-</button>
             <button id="send">CALCULAR</button>
         </div>   
-        <div class="output">
+    <div class="output">
             <output type="text" id="result">
-        </div>
-        
-
+    </div>
 
     <script src="/socket.io/socket.io.js" charset="utf-8"></script>
     <script src="script.js" charset="utf-8"></script>

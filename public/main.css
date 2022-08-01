@@ -1,4 +1,4 @@
-h1{
+h2,h1{
     color:black;
     size: 100px;
     text-align: center;
@@ -11,8 +11,19 @@ h1{
     width: 50%;
 }
 .output{
-    flex: center;
+    display: flex;
+    justify-content: center;
+    grid: auto;
     color: green;
+}
+
+.results{
+    display: flex;
+    justify-content: center;
+    grid: auto;
+    margin: auto;
+    color:red;
+    text-align: center;
 }
 
 

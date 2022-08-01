@@ -76,9 +76,21 @@ const io = SocketIO(server)
 const wrap = middleware => (socket, next) => middleware(socket.request, {}, next);
 io.use(wrap(sessionMiddleware))
 
+
 io.on('connection',(socket)=>{
     socket.on('message',(data)=>{
-        console.log(socket.request.session.email)
+        // transformo los datos de session en un objeto posteble
+        const clientData = {
+            email:socket.request.session.email,
+            username: socket.request.session.user,
+            data: data
+        } 
+        console.log(clientData)
+
+        // posteo en la base de datos los datos
+        postOneSubstrate(clientData).then(res=>console.log("saved data"))
+        
+
         // uso calculator.js para crear el resultado
         bgcalc(data).then(res=>socket.emit('message',JSON.stringify(res)))
         

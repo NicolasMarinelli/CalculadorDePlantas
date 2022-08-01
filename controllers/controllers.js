@@ -1,4 +1,4 @@
-const Database = require('../nosql/models').Database
+const {Database,UserDatabase} = require('../nosql/models')
 
 //-------------------------//
 //--geting all subtrates--//
@@ -13,16 +13,24 @@ const getAllSubstrates = async()=>{
     }
 }
 
+
 //---------------------------//
 // -posting a new subtrate--//
 //---------------------------//
 const postOneSubstrate = async(data)=>{
     try{
-        Database.create(data)
+        await UserDatabase.create(data)
 
     }catch(err){
         console.log(err)
     }
 }
+
+
+//---------------------------//
+// -patching a new subtrate--//
+//---------------------------//
+
+
 
 module.exports= {getAllSubstrates, postOneSubstrate}

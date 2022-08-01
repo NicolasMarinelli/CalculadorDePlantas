@@ -12,12 +12,9 @@ const databaseSchema = new mongoose.Schema({
 })
 
 const userSchema = new mongoose.Schema({   
-    email: {type: String, required:true, unique:true},
-    username : {type: String, unique: true, required:true},
-    data:[{
-        sustrato:{type: String},
-        cantidad:{type: String}
-    }]
+    email: {type: String, unique: false , required: true},
+    username : {type: String, unique: false , required: true},
+    data:{type: Object, unique: false , required: true}
 });
 
 
