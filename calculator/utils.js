@@ -1,13 +1,7 @@
-const Database = require('../nosql/models').Database
 
-const findSustrateByName =  (substrateName) => {
-    return new Promise((resolve, reject)=>{
-      Database.find({name:substrateName}, (err, substrato) =>{
-        if (err) {throw err};
-        resolve(substrato[0])
-      })
-    });
-  };
+const {findSustrateByName}= require("../controllers/controllers")
+
+
 
   const dataHandler= (data)=>{
     const keys = Object.keys(data);

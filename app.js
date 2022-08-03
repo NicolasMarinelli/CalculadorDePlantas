@@ -4,7 +4,7 @@ require('dotenv').config()
 const connectDB= require('./nosql/dbnosql')
 const SocketIO= require('socket.io')
 const bgcalc = require('./calculator/calculator')
-const {getAllSubstrates,postOneSubstrate}= require('./controllers/controllers');
+const {getAllSubstrates,postOneSubstrate, postOneUser}= require('./controllers/controllers');
 // const router= require("./router/routes")
 const session = require('express-session')
 
@@ -37,15 +37,20 @@ app.get('/names',async (req,res)=>{
 
 
 //------------------------------------------------------//
-//getting the page for the form to add more substrates //
+//getting the page for the form to add more substrates and posting new ones //
 
 app.get('/add',(req,res)=>{
     res.sendFile('public/add.html',{ root : __dirname});
 })
 
+
 app.post('/add',(req,res)=>{
-    res.json({msg:'new sebtrate generated'})
+    res.send("sustrato cargado!")
+    console.log(req.body)
+    postOneSubstrate(req.body).then(res=>console.log("sustrate saved?"))
 })
+
+
 
 //-----------------//
 //handling errors//
@@ -79,16 +84,15 @@ io.use(wrap(sessionMiddleware))
 
 io.on('connection',(socket)=>{
     socket.on('message',(data)=>{
-        // transformo los datos de session en un objeto posteble
+        // transformo los datos de session y socket en un objeto posteble
         const clientData = {
             email:socket.request.session.email,
             username: socket.request.session.user,
             data: data
         } 
-        console.log(clientData)
-
-        // posteo en la base de datos los datos
-        postOneSubstrate(clientData).then(res=>console.log("saved data"))
+        
+        // posteo en la base de datos los datos 
+        postOneUser(clientData).then(res=>console.log("saved data"))
         
 
         // uso calculator.js para crear el resultado

@@ -15,9 +15,9 @@ const getAllSubstrates = async()=>{
 
 
 //---------------------------//
-// -posting a new subtrate--//
+// --posting user data and --//
 //---------------------------//
-const postOneSubstrate = async(data)=>{
+const postOneUser = async(data)=>{
     try{
         await UserDatabase.create(data)
 
@@ -28,9 +28,30 @@ const postOneSubstrate = async(data)=>{
 
 
 //---------------------------//
-// -patching a new subtrate--//
+// -posting a new subtrate--//
 //---------------------------//
 
+const postOneSubstrate = async(data)=>{
+    try{
+        await Database.create(data)
+
+    }catch(err){
+        console.log(err)
+    }
+}
+
+//------------------------------------//
+// -looking for 1 subrtrate by name--//
+//----------------------------------//
+
+const findSustrateByName =  (substrateName) => {
+    return new Promise((resolve, reject)=>{
+      Database.find({name:substrateName}, (err, substrato) =>{
+        if (err) {throw err};
+        resolve(substrato[0])
+      })
+    });
+  };
 
 
-module.exports= {getAllSubstrates, postOneSubstrate}
+module.exports= {getAllSubstrates, postOneSubstrate,postOneUser,findSustrateByName}

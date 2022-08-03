@@ -48,8 +48,8 @@ const bgcalc = async (data)=>{
       BiogasTotal: bgT,
       CH4prom: ch4p, 
       Pot: pot,
-      gasNatural: Math.floor(ch4p*bgT),
-      glp: Math.floor(ch4p*bgT*0.82)
+      gasNatural: Math.floor(ch4p*bgT/100),
+      glp: Math.floor(ch4p*bgT*0.82/100)
     }
   return r
     

@@ -9,15 +9,14 @@
 <body>
     <h1>Formulario para cargar sustratos</h1>
     <form action="/add" method="post">
-        Nombre:<input type="text" placeholder="nombre de sustrato" required>
-        res:<input type="number" placeholder="" required>
-        st:<input type="number" min="0.01" max="0.99" step="0.01" placeholder="materia seca" required>
-        sv:<input type="number" min="0.01" max="0.99" step="0.01" placeholder="materia orgánica" required>
-        deg:<input type="number" min="0.25" max="0.99" step="0.01" placeholder="degradacion" required>
-        bgprod:<input type="number"  placeholder="produccion de biogas por volatil" required>
-        ch4:<input type="number" min="0.50" max="0.99" step ="0.01" placeholder="calidad de gas" required>
-        trh:<input type="number" min="20" max="150"  placeholder="tiempo de retencion" required>
-        <input type="button" value="Guardar">
+        Nombre:<input type="text" placeholder="nombre de sustrato" name="name" required>
+        st:<input type="number" min="0.01" max="0.99" step="0.01" placeholder="materia seca" required name="st">
+        sv:<input type="number" min="0.01" max="0.99" step="0.01" placeholder="materia orgánica" required name="sv">
+        deg:<input type="number" min="0.25" max="0.99" step="0.01" placeholder="degradacion" required name="deg">
+        bgprod:<input type="number"  placeholder="produccion de biogas por volatil" required name="bgprod">
+        ch4:<input type="number" min="0.50" max="0.99" step ="0.01" placeholder="calidad de gas" required name="ch4">
+        trh:<input type="number" min="20" max="150"  placeholder="tiempo de retencion" required name="trh">
+        <input type="submit" value="Guardar">
     </form>
 </body>
 </html>

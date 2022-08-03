@@ -2,7 +2,6 @@ const mongoose = require("mongoose")
 
 const databaseSchema = new mongoose.Schema({
     name: {type:String,required:true,unique:true}, 
-    res: {type:Number,required:true},
     st:{type:Number,required:true},
     sv:{type:Number,required:true},
     deg:{type:Number,required:true},
