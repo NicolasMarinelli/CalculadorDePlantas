@@ -1,6 +1,4 @@
-
 const {findSustrateByName}= require("../controllers/controllers")
-
 
 
   const dataHandler= (data)=>{
