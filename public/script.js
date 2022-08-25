@@ -34,15 +34,16 @@ let btnMinus =document.getElementById('minus')
 // Agregar mas sustratos y sumarlos al DOM
 btnPlus.addEventListener('click',()=>{
     let other = document.getElementById("perro")
+    let parentDiv = other.parentNode
     if(subCounter<6){
         subCounter++
         let div = document.createElement('div')
         div.id=`div${subCounter}`
         div.className= 'conti'
         div.innerHTML= `<select name="Subselect" id="sub${subCounter}">
-        <option value="0" required>Elegir sustrato</option></select>
-        <input type="number" min="0" step="1" id="cant${subCounter}" placeholder="toneladas/m3" value="0">`
-        document.body.insertBefore(div,other)
+        <option value="0" required>Elegir sustrato</option> </select>
+        <input type="number" min="0" step="1" id="cant${subCounter}" placeholder="toneladas/m3" value="0" class="num-input">`
+        parentDiv.insertBefore(div,other)
         subspopulate('/names')
         oDOM[`sub${subCounter}`] =document.getElementById(`sub${subCounter}`)
         oDOM[`cant${subCounter}`] =document.getElementById(`cant${subCounter}`)
@@ -92,9 +93,9 @@ socket.on('message',(result)=>{
     let  result2=JSON.parse(result)
     output.innerHTML = ""
     output.innerHTML += `<p><strong>  ${""}</p>
-    <h2>Energia disponible Kw/día: <p class="results" type="number" value="${result2["Pot"]}"></p></h2>
-    <h2>M3 de Gas Natural reemplazado por día:<p class="results" type="number" value="${result2["gasNatural"]}"></p></h2>
-    <h2>Kg de GLP reemplazado por día:<p class="results" type="number" value="${result2["glp"]}"></p></h2>`
+    <h2 class="results1">Energia disponible Kw/día: <p class="results" type="number" value="${result2["Pot"]}"></p></h2>
+    <h2 class="results2">M3 de Gas Natural reemplazado por día: <p class="results" type="number" value="${result2["gasNatural"]}"></p></h2>
+    <h2 class="results3">Kg de GLP reemplazado por día: <p class="results" type="number" value="${result2["glp"]}"></p></h2>`
 
     // output.innerHTML +=`<h2>Volumen de digestion ${result2["volDig"]} m3</h2>
     // <h2>Biogas estimado ${result2["BiogasTotal"]} m3/día</h2>

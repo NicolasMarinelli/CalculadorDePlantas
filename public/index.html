@@ -1,24 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-KYMLWE4FCV"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-KYMLWE4FCV');
-</script>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TECNOCALC</title>
+  <!--     Fonts and icons     -->
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
+  <!-- Nucleo Icons -->
+  <link href="../assets/css/nucleo-icons.css" rel="stylesheet" />
+  <link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
+  <!-- Font Awesome Icons -->
+  <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+  <!-- Material Icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+  <!-- CSS Files -->
+  <link id="pagestyle" href="../assets/css/material-dashboard.css?v=3.0.4" rel="stylesheet" />
 </head>
 <body>
-    <h1>Registrese!</h1>
-    <form action="/main" method="post">
-        Nombre:<input type="text" name="name"  required>
-        Email:<input type="email" name="email"  required>
-        <input type="submit" value="Ingresar">
+    
+        <main class="main-content  mt-0">
+            <section>
+              <div class="page-header min-vh-100">
+                <div class="container">
+                  <div class="row">
+                    <div class="col-6 d-lg-flex d-none h-100 my-auto pe-0 position-absolute top-0 start-0 text-center justify-content-center flex-column">
+                      <div class="position-relative bg-gradient-primary h-100 m-3 px-7 border-radius-lg d-flex flex-column justify-content-center" style="background-image: url('./assets/img/illustrations/SIGNIN.jpeg'); background-size: cover;">
+                      </div>
+                    </div>
+                    <div class="col-xl-4 col-lg-5 col-md-7 d-flex flex-column ms-auto me-auto ms-lg-auto me-lg-5">
+                      <div class="card card-plain">
+                        <div class="card-body">
+                          <form role="form" action="/main" method="post">
+                            <h1 class="text-center">Registrese!</h1>
+                            <div class="input-group input-group-outline mb-3">
+                              <label class="form-label">Nombre</label>
+                              <input type="text" class="form-control" type="text" name="name"  required >
+                            </div>
+                            <div class="input-group input-group-outline mb-3">
+                              <label class="form-label">Email</label>
+                              <input type="email" class="form-control" type="email" name="email"  required>
+                            </div>
+                            <div class="text-center">
+                              <button type="submit" class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Ingresar</button>
+                            </div>
+                          </form>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </main>
+
+            <!--   Core JS Files   -->
+  <script src="../assets/js/core/popper.min.js"></script>
+  <script src="../assets/js/core/bootstrap.min.js"></script>
+  <script src="../assets/js/plugins/perfect-scrollbar.min.js"></script>
+  <script src="../assets/js/plugins/smooth-scrollbar.min.js"></script>
+  <script>
+    var win = navigator.platform.indexOf('Win') > -1;
+    if (win && document.querySelector('#sidenav-scrollbar')) {
+      var options = {
+        damping: '0.5'
+      }
+      Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
+    }
+  </script>
+<script src="../assets/js/material-dashboard.min.js?v=3.0.4"></script>
 </body>
 </html>

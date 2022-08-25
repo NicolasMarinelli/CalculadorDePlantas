@@ -5,8 +5,10 @@ const connectDB= require('./nosql/dbnosql')
 const SocketIO= require('socket.io')
 const bgcalc = require('./calculator/calculator')
 const {getAllSubstrates,postOneSubstrate, postOneUser}= require('./controllers/controllers');
-// const router= require("./router/routes")
+const router= require("./router/router")
 const session = require('express-session')
+
+const expressLayouts = require("express-ejs-layouts")
 
 
 const sessionMiddleware=session({
@@ -17,6 +19,8 @@ const sessionMiddleware=session({
 
 app.use(sessionMiddleware);
 
+app.set("view engine", 'ejs')
+app.use(expressLayouts)
 
 //------------------------------------------------------//
 //-----------------STATIC MIDDLEWARE--------------------//
@@ -24,7 +28,7 @@ app.use(sessionMiddleware);
 app.use(express.static('./public'))
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
-
+app.use(express.static('./public/assets/img/ilustrations'))
 
 //------------------------------------------------------//
 // geting the list of possible subtrates  //
@@ -40,7 +44,7 @@ app.get('/names',async (req,res)=>{
 //getting the page for the form to add more substrates and posting new ones //
 
 app.get('/add',(req,res)=>{
-    res.sendFile('public/add.html',{ root : __dirname});
+    res.sendFile('noPublic/add.html',{ root : __dirname});
 })
 
 
@@ -50,6 +54,11 @@ app.post('/add',(req,res)=>{
     postOneSubstrate(req.body).then(res=>console.log("sustrate saved?"))
 })
 
+
+//-- usamos el reouter para el dashboard--//
+
+
+app.use(router.routes)
 
 
 //-----------------//
@@ -132,7 +141,7 @@ var auth = function(req, res, next) {
       req.session.user =req.body.name;
       req.session.email=req.body.email;
       req.session.admin = true;
-      res.sendFile('public/main.html',{ root : __dirname})
+      res.sendFile('noPublic/main.html',{ root : __dirname})
     }
   });
 
@@ -147,6 +156,11 @@ app.get('/logout', function (req, res) {
 //------------------------------------------------------//
 
 app.get('/main',auth,(req,res)=>{
-    res.sendFile('public/main.html',{ root : __dirname});
+    res.sendFile('noPublic/main.html',{ root : __dirname});
 })
+
+
+
+
+
 

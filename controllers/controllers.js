@@ -54,4 +54,27 @@ const findSustrateByName =  (substrateName) => {
   };
 
 
-module.exports= {getAllSubstrates, postOneSubstrate,postOneUser,findSustrateByName}
+
+//------------------------------------//
+// -looking for dato to dashboard (not finneshed)-//
+//----------------------------------//
+
+
+
+
+const findResults= async(req,res)=>{
+    try{
+        const result= [...await UserDatabase.find({})]
+        names= result.map(v=>v.data)
+        res.json({names})
+
+
+        }catch(err){
+            console.log(err)
+        }
+    }
+    
+
+
+
+module.exports= {getAllSubstrates, postOneSubstrate,postOneUser,findSustrateByName,findResults}
