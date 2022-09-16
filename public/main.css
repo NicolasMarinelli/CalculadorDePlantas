@@ -14,22 +14,27 @@ h2,h1{
 }
 .output{
     display: flex;
-    justify-content: center;
-    grid: auto;
-    color: green;
+    width: 700px;
+    text-align: center;
 }
+
+table{
+    border-spacing: 5px;
+}
+td{
+    padding-left: 50px;
+}
+
 .results{
     display: flex;
-    justify-content: center;
     grid: auto;
     margin: auto;
-    color:black;
-    text-align: right;
+    text-align: center;
+    text-size-adjust:100px
 }
 
 .results1{
     display: flex;
-    justify-content: center;
     grid: auto;
     margin: auto;
     color:red;
@@ -37,19 +42,17 @@ h2,h1{
 }
 .results2{
     display: flex;
-    justify-content: center;
     grid: auto;
     margin: auto;
     color: green;
-    text-align: left;
+    text-align: right;
 }
 .results3{
     display: flex;
-    justify-content: center;
     grid: auto;
     margin: auto;
     color:brown;
-    text-align: left;
+    text-align: right;
 }
 
 body {

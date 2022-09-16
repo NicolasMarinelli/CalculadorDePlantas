@@ -92,10 +92,23 @@ btn.addEventListener('click', ()=>{
 socket.on('message',(result)=>{
     let  result2=JSON.parse(result)
     output.innerHTML = ""
-    output.innerHTML += `<p><strong>  ${""}</p>
-    <h2 class="results1">Energia disponible Kw/día: <p class="results" type="number" value="${result2["Pot"]}"></p></h2>
-    <h2 class="results2">M3 de Gas Natural reemplazado por día: <p class="results" type="number" value="${result2["gasNatural"]}"></p></h2>
-    <h2 class="results3">Kg de GLP reemplazado por día: <p class="results" type="number" value="${result2["glp"]}"></p></h2>`
+    output.innerHTML+=`<table>
+    <tr class="results1">
+    <td> Gas Natural reemplazado:</th>
+    <td><p class="results" type="number" value="${result2["gasNatural"]}"></th>
+    <td>M3/día</th>
+  </tr>
+  <tr class="results2">
+    <td >Energia electrica:</td>
+    <td ><p class="results" type="number" value="${result2["Pot"]}" ></p></td>
+    <td >Kw-h/día</td>
+  </tr>
+  <tr class="results3">
+    <td>GLP reemplazado:</td>
+    <td><p class="results" type="number" value="${result2["glp"]}"></p></td>
+    <td>Kg/dia</td>
+  </tr>
+    </table>`
 
     // output.innerHTML +=`<h2>Volumen de digestion ${result2["volDig"]} m3</h2>
     // <h2>Biogas estimado ${result2["BiogasTotal"]} m3/día</h2>
